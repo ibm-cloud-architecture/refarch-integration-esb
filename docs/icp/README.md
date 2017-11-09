@@ -1,5 +1,60 @@
-# Build IIB IBM Cloud Private Application
-Currently there is no shipped IBM Integration Bus helm chart for IBM Cloud Private application. However this is straight forward to build. There are three sections:   
+# Deploy a message flow with IIB to IBM Cloud Private
+Microservice architecture discussions are often heavily focused on alternate ways to build applications, but the core ideas behind it are relevant to all software components, including integration.
+Lightweight runtimes bring interesting ways to develop integration logic, where monolytic integration / ESB flows could be breaked out to smaller more manageable pieces.
+
+Within a microservice architecture, we assert that it is perfectly reasonable to implement integration logic using an integration engine
+
+There are two ways to deploy IIB: using your own packaging or using ICP catalog.
+
+# Using ICP catalog
+Go to ICP catalog and search for ibm-integration-bus-dev:
+![](img/icp-catalog.png)
+This chart deploys a single IBM Integration Bus for Developers integration node, containing a single integration server into an IBM Cloud Private.
+
+Use the **configure** button at the bottom and enter the name of the chart release: **inventory-mediation-flow** and the namespace to use: **browncompute**.
+
+Alternately use the helm command:
+```
+$ helm install --name inventory-mediation-flow ibm-integration-bud-dev --set license=accept --namespace=browncompute
+```
+Once deployed, go to the Deployments menu to consult the settings, or use **kubectl get all** command. Be sure to be connected to the ICP cluster with commands like:
+```shell
+$ kubectl config set-cluster vh-icp-21-master.icp --server=https://abracadabra:8001 --insecure-skip-tls-verify=true
+$ kubectl config set-context vh-icp-21-master.icp-context --cluster=vh-icp-21-master.icp
+$ kubectl config set-credentials vh-icp-21-master.icp-user --token=eyJhbGci...
+$ kubectl config set-context vh-icp-21-master.icp-context --user=vh-icp-21-master.icp-user --namespace=default
+$ kubectl config use-context vh-icp-21-master.icp-context
+```
+
+Then
+
+```shell
+ $ kubectl get all -l release=inventory-mediation-flow --namespace=browncompute
+
+ NAME                           CLUSTER-IP    EXTERNAL-IP   PORT(S)                                        AGE
+svc/inventory-mediation-flow   10.101.0.81   <nodes>       4414:30653/TCP,7800:31506/TCP,7080:30110/TCP   10m
+
+NAME                              DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+deploy/inventory-mediation-flow   1         1         1            1           10m
+```
+
+So this container is running IIB and it is ready to receive mediation flow. To do so we will use kubectl exec command.
+```shell
+# Get deployment
+$ kubectl describe deployment inventory-mediation-flow     --namespace=browncompute
+# get the pod name
+$ export POD_NAME=$(kubectl get pods --namespace browncompute -l "app=inventory-mediation-flow" -o jsonpath="{.items[0].metadata.name}")
+# to see all pods within a namespace
+$ kubectl get pods --namespace=browncompute
+# get long description of pod
+$ kubectl describe pods  $POD_NAME --namespace=browncompute
+# get description for the services
+kubectl describe svc inventory-mediation-flow     --namespace=browncompute
+
+```
+
+# Build your own packaging
+This is straight forward to build your own helm chart so you can bring your own IIB runtime and mediation flow. There are three steps:   
 1. Publishing the docker container to a suitable docker repository
 2. Creating the helm chart
 3. Deploying an instance of IIB with our application

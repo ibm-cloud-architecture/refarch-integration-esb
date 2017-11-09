@@ -3,18 +3,18 @@
 This project is part of the 'IBM Integration Reference Architecture' suite, available at [https://github.com/ibm-cloud-architecture/refarch-integration](https://github.com/ibm-cloud-architecture/refarch-integration). It demonstrates how an IBM Integration Bus runtime can be deployed on premise, running the gateway flow to expose REST api from a SOAP back end service, and can be deployed to IBM Cloud private.
 
 # Table of Contents
-* [IIB background](https://github.com/ibm-cloud-architecture/refarch-integration-esb#ibm-integration-bus-background)
-* [Server Installation](https://github.com/ibm-cloud-architecture/refarch-integration-esb#server-installation)
-* [Flow implementation](https://github.com/ibm-cloud-architecture/refarch-integration-esb#inventory-flow)
-* [Deployment](https://github.com/ibm-cloud-architecture/refarch-integration-esb#deployment)
-* [CI/CD](https://github.com/ibm-cloud-architecture/refarch-integration-esb#cicd)
+* [IIB background](#ibm-integration-bus-background)
+* [Server Installation](#server-installation)
+* [Flow implementation](#inventory-flow)
+* [Deployment](#deployment)
+* [CI/CD](#cicd)
 * [Service Management](https://github.com/ibm-cloud-architecture/refarch-integration-esb#application-performance-management)
 * [Compendium](https://github.com/ibm-cloud-architecture/refarch-integration-esb#compendium)
 
 # IBM Integration Bus Background
 
 IBM Integration Bus is a market-leading lightweight enterprise integration engine that offers a fast, simple way for systems and applications to communicate with each other. As a result, it can help you achieve business value, reduce IT complexity and save money.
-IBM Integration Bus supports a range of integration choices, skills and interfaces to optimize the value of existing technology investments.
+IBM Integration Bus supports a range of integration choices, skills and interfaces to optimize the value of existing technology investments. But also IIB now provides an extremely lightweight integration runtime with first class support for modern protocols such as REST and is well aligned with cloud native deployment needs. The runtime can now be stopped and started in seconds. It runs in docker containers, and can make building and deploying stateless integration logic following any cloud native application development pattern. It offers great capabilities to develop REST api, integrate with backend, event streaming, and SOA services.
 
 [![Brief introduction to IBM Integration Bus](https://img.youtube.com/vi/qQvT4kJoPTM/0.jpg)](https://www.youtube.com/watch?v=qQvT4kJoPTM)
 
@@ -42,7 +42,6 @@ command:
    /opt/ibm/iib-10.0.0.9/iib make registry global accept license silently     
 ```
 Remember that to start the IIB toolkit you can use the `<install_dir>/iib toolkit` command.
-
 ## Docker
 For docker read this note: [Building a docker image that include IBM Integration Bus and IBM MQ embedded using the Developer Editions](docker/README.md)
 
@@ -93,13 +92,15 @@ There are three options for deployment:
 2. Deploy on IBM Cloud Private using Helm
 3. Traditional On-Premise using IIB commands
 
+To implement the [lightweight integration](https://developer.ibm.com/integration/blog/2017/03/31/lightweight-integration-iib/)  strategy and development practices we are moving the mediation flow within container embedding IIB runtime.
+
 ## Deploy manually using Docker
 See the article [Deploying the application using Docker locally](deploy/README.md)
 
-## IBM Cloud Private
-See the article [Deploying a new instance of IBM Integration Bus on IBM Cloud Private deploying the newly created application](IBMCloudprivate/README.md)
+## Deploy to IBM Cloud Private
+See the article [Deploying a new instance of IBM Integration Bus on IBM Cloud Private deploying the newly created application](docs/icp/README.md)
 
-## Traditional On-Premise
+## Deploy to traditional on-premise servers
 Follow the standard deployment steps document in the [knowledge center](https://www.ibm.com/support/knowledgecenter/en/SSMKHH_10.0.0/com.ibm.etools.mft.doc/af03890_.htm)
 
 # CI/CD
@@ -158,3 +159,6 @@ To get visibility into the IIB runtime and server performance metrics, a APM age
 * [Learn more about IBM Integration Bus](https://www.ibm.com/support/knowledgecenter/en/SSMKHH_10.0.0/com.ibm.etools.msgbroker.helphome.doc/help_home_msgbroker.htm)
 
 * [Learn more about IBM Integration Bus and Docker](https://www.ibm.com/support/knowledgecenter/en/SSMKHH_10.0.0/com.ibm.etools.mft.doc/bz91300_.htm)
+
+* [Lightweight integration: Using microservices principles in integration](https://developer.ibm.com/integration/blog/2017/03/31/lightweight-integration-iib/)
+* [12-factor integration](https://developer.ibm.com/integration/blog/2017/04/16/12-factor-integration/)
