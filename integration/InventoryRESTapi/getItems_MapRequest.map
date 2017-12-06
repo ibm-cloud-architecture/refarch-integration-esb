@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0" xmlns:map="default">
+    <input path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/BlobMessage.xsd"/>
+    <output path="/dalws_InlineSchema1.xsd"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="out" uri="http://www.ibm.com/iib/msl/json"/>
+        <namespace kind="supplement" prefix="out2" uri="http://ws.inventory/"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="getItems_MapRequest">
+        <input derivedFrom="MB:JSON_operation_name:getItems" path="mb:msg(BLOB,assembly,BLOB,Properties,LocalEnvironment)" var="ComIbmMessageAssembly_BLOB"/>
+        <output namespace="http://ws.inventory/" path="mb:msg(items,assembly,XMLNSC,Properties)" var="MessageAssembly"/>
+        <move>
+            <input path="$ComIbmMessageAssembly_BLOB/Properties"/>
+            <output path="$MessageAssembly/Properties"/>
+        </move>
+        <task type="info">
+            <documentation description="The REST API input data of operation getItems.">This Task is provided to show the location of the REST API input data of operation getItems.
+The path and query parameters are provided under "Parameters".
+You may need to use these as inputs to your mappings.</documentation>
+            <input path="$ComIbmMessageAssembly_BLOB/LocalEnvironment/REST/Input"/>
+        </task>
+    </mappingDeclaration>
+</mappingRoot>

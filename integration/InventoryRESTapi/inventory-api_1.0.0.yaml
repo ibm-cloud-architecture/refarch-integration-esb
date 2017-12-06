@@ -2,11 +2,11 @@
 swagger: "2.0"
 info:
   x-ibm-name: "inventory-api"
-  title: "iib inventory api"
+  title: "inventory api"
   version: "1.0.0"
 schemes:
 - "https"
-basePath: "/iib-inventory-api"
+basePath: "/inventory-api-iib"
 consumes:
 - "application/json"
 produces:
