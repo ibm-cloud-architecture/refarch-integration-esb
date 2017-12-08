@@ -15,12 +15,11 @@
 # Changes to create IIB+MQ image marked #IIBMQ
 
 #IIBMQ Build from Ubuntu 14:04
-#FROM ubuntu:16.04
 FROM ubuntu:14.04
 
 LABEL maintainer "Callum Jackson <callumj@uk.ibm.com>"
 
-ARG MQ_URL=https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/messaging/mqadv/mqadv_dev903_ubuntu_x86-64.tar.gz
+ARG MQ_URL=https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/messaging/mqadv/mqadv_dev904_ubuntu_x86-64.tar.gz
 
 
 # The MQ packages to install

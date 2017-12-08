@@ -8,20 +8,17 @@
 # Changes to create IIB+MQ image marked #IIBMQ
 
 #IIBMQ Build from mq image (assumes there is a local image, called "mq")
-#FROM ubuntu:14.04
-FROM mqbase
+
+FROM mqbase:904
 
 MAINTAINER Callum Jackson callumj@uk.ibm.com
 
-# Install curl
-RUN apt-get update && \
-    apt-get install -y curl && \
-    rm -rf /var/lib/apt/lists/*
-
+# curl is already in mqbase image
+# install iib runtime only, so excluding toolkit.
 RUN mkdir /opt/ibm && \
-    curl http://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/integration/10.0.0.9-IIB-LINUX64-DEVELOPER.tar.gz \
-    | tar zx --exclude iib-10.0.0.9/tools --directory /opt/ibm && \
-    /opt/ibm/iib-10.0.0.9/iib make registry global accept license silently
+    curl http://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/integration/10.0.0.10-IIB-LINUX64-DEVELOPER.tar.gz \
+    | tar zx --exclude iib-10.0.0.10/tools --directory /opt/ibm && \
+    /opt/ibm/iib-10.0.0.10/iib make registry global accept license silently
 
 # Configure system
 COPY kernel_settings.sh /tmp/
@@ -43,13 +40,14 @@ RUN sed -i 's/sha512/sha512 minlen=8/'  /etc/pam.d/common-password && \
 
 #IIBMQ Copy all iib*.sh scripts
 COPY iib*.sh /usr/local/bin/
-RUN chmod +rx /usr/local/bin/*.sh
+RUN chmod +rx /usr/local/bin/iib*.sh
 ENV LICENSE accept
-ADD integration /integration
-RUN /bin/bash  -c "source /opt/ibm/iib-10.0.0.9/server/bin/mqsiprofile; mqsipackagebar -a /iibApp.bar -w /integration -k RESTAPI"
+#ADD integration /integration
+#RUN /bin/bash  -c "source /opt/ibm/iib-10.0.0.10/server/bin/mqsiprofile; mqsipackagebar -a /iibApp.bar -w /integration -k RESTAPI"
 
 # Set BASH_ENV to source mqsiprofile when using docker exec bash -c
 ENV BASH_ENV=/usr/local/bin/iib_env.sh
+ENV MQSI_MQTT_LOCAL_HOSTNAME=127.0.0.1
 
 # Expose default admin port and http port
 EXPOSE 4414 7800
