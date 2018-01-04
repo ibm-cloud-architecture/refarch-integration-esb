@@ -19,11 +19,6 @@ IBM Integration Bus is a market-leading lightweight enterprise integration engin
 IBM Integration Bus supports a range of integration choices, skills and interfaces to optimize the value of existing technology investments. But also IIB now provides an extremely lightweight integration runtime with first class support for modern protocols such as REST and is well aligned with cloud native deployment needs.  
 The runtime can now be stopped and started in seconds. It runs in docker containers, and can make building and deploying stateless integration logic following any cloud native application development pattern. It offers great capabilities to develop REST api, integrate with backend, event streaming, and SOA services.  
 
-Here is a brief introduction video to IIB:  
-
-[![Brief introduction to IBM Integration Bus](https://img.youtube.com/vi/qQvT4kJoPTM/0.jpg)](https://www.youtube.com/watch?v=qQvT4kJoPTM)
-
-
 # Server Installations
 We can run IIB directly on bare-metal or virtual machine servers, or as docker container on public or private cloud. In our environment we have one dedicated VM to run IIB. It is not set to be high available, as we do not need to proof that IIB can be HA. We want to focus basic functional requirements and address other non-functional requirements that make more sense in an hybrid solution like CI/CD and service management.
 
@@ -177,4 +172,6 @@ To get visibility into the IIB runtime and server performance metrics, a APM age
 
 # Compendium
 * [See the global compendium](https://github.com/ibm-cloud-architecture/refarch-integration/blob/master/docs/compendium.md)
+* [Introduction video to IIB](https://img.youtube.com/vi/qQvT4kJoPTM/0.jpg)](https://www.youtube.com/watch?v=qQvT4kJoPTM)
+* [Getting started with IIB](https://developer.ibm.com/integration/docs/ibm-integration-bus/get-started/get-started-with-ibm-integration-bus-for-developers/)
 * [Developing a REST API service lab](https://developer.ibm.com/integration/docs/ibm-integration-bus/self-study-labs/iib10-lab-2-developing-a-rest-api-service/)

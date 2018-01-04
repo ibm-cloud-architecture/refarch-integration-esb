@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0" xmlns:map="default">
+    <inlinedXMLSchema><![CDATA[<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"> 
+    <xsd:element name="message" nillable="true" type="xsd:string"/> 
+    <xsd:element name="error" nillable="true" type="xsd:string"/> 
+</xsd:schema>]]></inlinedXMLSchema>
+    <input path="/dal-inventory_InlineSchema1.xsd" var="var2"/>
+    <input inlinedXMLSchema="true" path="../schema_0.xsd" var="var1"/>
+    <output path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/JsonDomainMsg.xsd" var="var"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="in" uri="http://ws.inventory/"/>
+        <namespace kind="supplement" prefix="out" uri="http://www.ibm.com/iib/msl/json"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="getItemById_mapFault">
+        <input namespace="http://ws.inventory/" path="$var2/mb:msg(DALFault,assembly,XMLNSC,Properties)" var="ComIbmMessageAssembly_DALFault"/>
+        <output namespace="http://www.ibm.com/iib/msl/json" path="$var/mb:msg(JSON,assembly,JSON,Properties)" var="ComIbmMessageAssembly_JSON">
+            <cast castType="userDefined" path="$ComIbmMessageAssembly_JSON/JSON/Data/type('anyType')" qualifier="{http://www.ibm.com/iib/msl/json}JSONObject" ref="var"/>
+            <cast castType="userDefined" path="$ComIbmMessageAssembly_JSON/JSON/spath('Data',2)/any" qualifier="error" ref="var1"/>
+            <cast castType="userDefined" path="$ComIbmMessageAssembly_JSON/JSON/spath('Data',2)/any" qualifier="message" ref="var1"/>
+        </output>
+        <move>
+            <input path="$ComIbmMessageAssembly_DALFault/Properties"/>
+            <output path="$ComIbmMessageAssembly_JSON/Properties"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_DALFault/DALFault/code"/>
+            <output path="$ComIbmMessageAssembly_JSON/JSON/spath('Data',2)/error"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_DALFault/DALFault/message"/>
+            <output path="$ComIbmMessageAssembly_JSON/JSON/spath('Data',2)/message"/>
+        </move>
+    </mappingDeclaration>
+</mappingRoot>

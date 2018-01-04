@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmMSLMapping.msgnode="ComIbmMSLMapping.msgnode" xmlns:ComIbmSOAPReply.msgnode="ComIbmSOAPReply.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:gen_itemById_dalws_getId.subflow="gen/itemById_dalws_getId.subflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="getId.subflow" nsPrefix="getId.subflow">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmMSLMapping.msgnode="ComIbmMSLMapping.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:gen_itemById_dalws_getId.subflow="gen/itemById_dalws_getId.subflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="getId.subflow" nsPrefix="getId.subflow">
   <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
     <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
-    <translation xmi:type="utility:TranslatableString" key="getId" bundleName="getId" pluginId="InventoryRESTapi"/>
-    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/InventoryRESTapi/icons/full/obj16/getId.gif"/>
-    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/InventoryRESTapi/icons/full/obj30/getId.gif"/>
+    <translation xmi:type="utility:TranslatableString" key="getId" bundleName="getId" pluginId="InventoryRESTapi-v0"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/InventoryRESTapi-v0/icons/full/obj16/getId.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/InventoryRESTapi-v0/icons/full/obj30/getId.gif"/>
     <composition>
       <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input_1" location="25,25">
-        <translation xmi:type="utility:TranslatableString" key="Input" bundleName="getId" pluginId="InventoryRESTapi"/>
+        <translation xmi:type="utility:TranslatableString" key="Input" bundleName="getId" pluginId="InventoryRESTapi-v0"/>
       </nodes>
       <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output_1" location="536,48">
-        <translation xmi:type="utility:TranslatableString" key="Output" bundleName="getId" pluginId="InventoryRESTapi"/>
+        <translation xmi:type="utility:TranslatableString" key="Output" bundleName="getId" pluginId="InventoryRESTapi-v0"/>
       </nodes>
       <nodes xmi:type="ComIbmMSLMapping.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="117,112" mappingExpression="msl://{default}#getId_Mapping">
         <translation xmi:type="utility:ConstantString" string="Mapping"/>
       </nodes>
       <nodes xmi:type="ComIbmMSLMapping.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="399,24" mappingExpression="msl://{default}#itemToJson">
         <translation xmi:type="utility:ConstantString" string="Mapping1"/>
-      </nodes>
-      <nodes xmi:type="ComIbmSOAPReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="577,204">
-        <translation xmi:type="utility:ConstantString" string="SOAP Reply"/>
       </nodes>
       <nodes xmi:type="gen_itemById_dalws_getId.subflow:FCMComposite_1" xmi:id="FCMComposite_1_7" location="211,40">
         <translation xmi:type="utility:ConstantString" string="itemById_dalws"/>
