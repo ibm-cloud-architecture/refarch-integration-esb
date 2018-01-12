@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0" xmlns:map="default">
+    <input path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/JsonDomainMsg.xsd" var="var"/>
+    <input derivedFrom="MB:JSON_schema_in_swagger_document" path="/inventory-api_1.0.1.yaml" var="var1"/>
+    <output path="/dal-inventory_InlineSchema1.xsd"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="io" uri="http://www.ibm.com/iib/msl/json"/>
+        <namespace kind="supplement" prefix="out" uri="http://ws.inventory/"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="postItem_createNewItem">
+        <input derivedFrom="MB:JSON_operation_name:postItem" namespace="http://www.ibm.com/iib/msl/json" path="$var/mb:msg(JSON,assembly,JSON,Properties,LocalEnvironment)" var="ComIbmMessageAssembly_JSON">
+            <cast derivedFrom="MB:JSON_operation_request" path="$ComIbmMessageAssembly_JSON/JSON/Data/type('anyType')" qualifier="{http://www.ibm.com/iib/msl/json}item" ref="var1"/>
+        </input>
+        <output namespace="http://ws.inventory/" path="mb:msg(newItem,assembly,XMLNSC,Properties,HTTPRequestHeader)" var="MessageAssembly"/>
+        <task type="info">
+            <documentation description="The REST API input data of operation postItem.">This Task is provided to show the location of the REST API input data of operation postItem.
+The path and query parameters are provided under "Parameters".
+You may need to use these as inputs to your mappings.</documentation>
+            <input path="$ComIbmMessageAssembly_JSON/LocalEnvironment/REST/Input"/>
+        </task>
+        <move>
+            <input path="$ComIbmMessageAssembly_JSON/Properties"/>
+            <output path="$MessageAssembly/Properties"/>
+        </move>
+        <local>
+            <input path="$ComIbmMessageAssembly_JSON/JSON/spath('Data',2)"/>
+            <output path="$MessageAssembly/newItem/arg0"/>
+            <move automap="true">
+                <input path="id"/>
+                <output path="id"/>
+            </move>
+            <move automap="true">
+                <input path="name"/>
+                <output path="name"/>
+            </move>
+            <move automap="true">
+                <input path="description"/>
+                <output path="description"/>
+            </move>
+            <move automap="true">
+                <input path="price"/>
+                <output path="price"/>
+            </move>
+            <move automap="true">
+                <input path="imgAlt"/>
+                <output path="imgAlt"/>
+            </move>
+            <move automap="true">
+                <input path="img"/>
+                <output path="img"/>
+            </move>
+            <move automap="true">
+                <input path="quantity"/>
+                <output path="quantity"/>
+            </move>
+            <move automap="true">
+                <input path="type"/>
+                <output path="type"/>
+            </move>
+            <move automap="true">
+                <input path="serialNumber"/>
+                <output path="serialNumber"/>
+            </move>
+            <move automap="true">
+                <input path="model"/>
+                <output path="model"/>
+            </move>
+        </local>
+        <assign>
+            <output path="$MessageAssembly/HTTPRequestHeader/SOAPAction"/>
+        </assign>
+    </mappingDeclaration>
+</mappingRoot>

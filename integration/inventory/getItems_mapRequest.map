@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0" xmlns:map="default">
+    <input path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/BlobMessage.xsd"/>
+    <output path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/BlobMessage.xsd"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="out" uri="http://www.ibm.com/iib/msl/json"/>
+        <namespace kind="supplement" prefix="out2" uri="http://ws.inventory/"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="getItems_mapRequest">
+        <input derivedFrom="MB:JSON_operation_name:getItems" path="mb:msg(BLOB,assembly,BLOB,Properties,LocalEnvironment)" var="ComIbmMessageAssembly_BLOB"/>
+        <output path="mb:msg(BLOB,assembly,BLOB,Properties,HTTPRequestHeader)" var="MessageAssembly2"/>
+        <task type="info">
+            <documentation description="The REST API input data of operation getItems.">This Task is provided to show the location of the REST API input data of operation getItems.
+The path and query parameters are provided under "Parameters".
+You may need to use these as inputs to your mappings.</documentation>
+            <input path="$ComIbmMessageAssembly_BLOB/LocalEnvironment/REST/Input"/>
+        </task>
+        <move>
+            <input path="$ComIbmMessageAssembly_BLOB/Properties"/>
+            <output path="$MessageAssembly2/Properties"/>
+        </move>
+        <assign>
+            <output path="$MessageAssembly2/HTTPRequestHeader/SOAPAction"/>
+        </assign>
+        <assign value="3c736f6170656e763a456e76656c6f706520786d6c6e733a736f6170656e763d22687474703a2f2f736368656d61732e786d6c736f61702e6f72672f736f61702f656e76656c6f70652f2220786d6c6e733a71303d22687474703a2f2f77732e696e76656e746f72792f223e3c736f6170656e763a426f64793e3c71303a6974656d7320202f3e203c2f736f6170656e763a426f64793e3c2f736f6170656e763a456e76656c6f70653e">
+            <output path="$MessageAssembly2/BLOB/text()"/>
+        </assign>
+    </mappingDeclaration>
+</mappingRoot>

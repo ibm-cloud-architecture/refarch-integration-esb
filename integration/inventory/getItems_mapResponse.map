@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0" xmlns:map="default">
+    <input path="/dal-inventory_InlineSchema1.xsd"/>
+    <output path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/JsonDomainMsg.xsd" var="var"/>
+    <output derivedFrom="MB:JSON_schema_in_swagger_document" path="/inventory-api_1.0.1.yaml" var="var1"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="out" uri="http://www.ibm.com/iib/msl/json"/>
+        <namespace kind="supplement" prefix="in" uri="http://ws.inventory/"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="getItems_mapResponse">
+        <input namespace="http://ws.inventory/" path="mb:msg(itemsResponse,assembly,XMLNSC,Properties)" var="MessageAssembly"/>
+        <output namespace="http://www.ibm.com/iib/msl/json" path="$var/mb:msg(JSON,assembly,JSON,Properties,HTTPResponseHeader)" var="ComIbmMessageAssembly_JSON">
+            <cast derivedFrom="MB:JSON_operation_response" path="$ComIbmMessageAssembly_JSON/JSON/Data/type('anyType')" qualifier="{http://www.ibm.com/iib/msl/json}JSONArray_items" ref="var1"/>
+        </output>
+        <move>
+            <input path="$MessageAssembly/Properties"/>
+            <output path="$ComIbmMessageAssembly_JSON/Properties"/>
+        </move>
+        <foreach>
+            <input path="$MessageAssembly/itemsResponse/return"/>
+            <output path="$ComIbmMessageAssembly_JSON/JSON/spath('Data',2)/Item"/>
+            <move automap="true">
+                <input path="id"/>
+                <output path="id"/>
+            </move>
+            <move automap="true">
+                <input path="name"/>
+                <output path="name"/>
+            </move>
+            <move automap="true">
+                <input path="description"/>
+                <output path="description"/>
+            </move>
+            <move automap="true">
+                <input path="price"/>
+                <output path="price"/>
+            </move>
+            <move automap="true">
+                <input path="imgAlt"/>
+                <output path="imgAlt"/>
+            </move>
+            <move automap="true">
+                <input path="img"/>
+                <output path="img"/>
+            </move>
+            <convert defaultValue="0">
+                <input path="quantity"/>
+                <output path="quantity"/>
+            </convert>
+            <move automap="true">
+                <input path="type"/>
+                <output path="type"/>
+            </move>
+            <move automap="true">
+                <input path="serialNumber"/>
+                <output path="serialNumber"/>
+            </move>
+            <move automap="true">
+                <input path="model"/>
+                <output path="model"/>
+            </move>
+        </foreach>
+        <assign value="application/json">
+            <output path="$ComIbmMessageAssembly_JSON/HTTPResponseHeader/Content-Type"/>
+        </assign>
+    </mappingDeclaration>
+</mappingRoot>
