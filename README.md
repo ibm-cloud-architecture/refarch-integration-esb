@@ -51,64 +51,6 @@ For docker read this note: [Building a docker image that include IBM Integration
 ## IBM Cloud Private
 The deployment of IIB on ICP may follow two paths we are discussing them in a separate [note](docs/icp/README.md)
 
-# Inventory Flow
-This section addresses how the SOAP to REST mediation flow was created. We develop a REST API using IBM Integration Toolkit ([See product documentation](https://www.ibm.com/support/knowledgecenter/en/SSMKHH_10.0.0/com.ibm.etools.mft.doc/bi12036_.htm) and this [developer article](https://developer.ibm.com/integration/docs/ibm-integration-bus/get-started-developing-an-integration-solution-overview/)) following the steps below:
-## 1- Select the implementation style
-We start by using a REST api, so focusing on the consumer contract and using RESTful web services, and then using flows we will integrate with existing SOAP web services.
-1. Decide on reusable content that will be part of Library. We like reuse. Payload definition like item, inventory, supplier object may be reusable.
-1. Create a REST API application using the Integration toolkit product.
-1. Define the resources and operations that will be exposed by the API using a swagger file. (See file in integration/InventoryRESapi/inventory-api_1.0.0.yaml)
-1. Define the data model (e.g. item and items objects were defined in the swagger file too).
-1. Import the WSDL to consumer using the Web Services Explorer and save the wsdl into your project / workbench.
-1. For each operation create a subflow: the flow has input and output node,
- * drag and drop SOAP request node and map the node property to the SOAP operation of the WSDL. For example getId is mapped to `itemById` binding operation.
- * Define maps to map REST input to XML input and then XML ouput response to JSON object. (see [this not in knowledge center ](https://www.ibm.com/support/knowledgecenter/SSMKHH_10.0.0/com.ibm.etools.mft.doc/sm12030_.htm))
-
-If you want to access the project, open the IIB toolkit and use import > General > Import existing project, then select the `refarch-integration-esb/integration/InventoryRESTapi` project.
-
-In the API Description the base URL is set to **iib-inventory-api** (this is defined in the header section), then for the resources the following operations are defined:
-```
-* /item/{id} GET, PUT, DELETE
-* /items GET, POST
-```
-
-As illustrated in the figure below, the `/item/{id}` path get the `id` string as input and return a item object:
-![Get items](docs/getitem-resource.png)
-
-The model definition defined `item` and `items` objects as illustrated below:  
-![inv-model](docs/inv-model.png)
-
-This definition is very close to what the Data Access Layer SOAP interface is providing, with some adaptation for the future new consumers of the RESTapi.
-
-The service to consume is from the [Data Access Layer]() project, and it is specified via a SOAP WSDL interface, as illustrated in following figure:
-
-![](docs/wsdl.png)
-
-The project needs to do protocol and data mapping, via the implementation of flows. ([See product documentation](https://www.ibm.com/support/knowledgecenter/en/SSMKHH_10.0.0/com.ibm.etools.mft.doc/bi12020_.htm)).  
-
-The flow below presents the `getItems` operation:   
-
-![](docs/get-items-flow.png)
-
-The input string is mapped to the `itemId` of the soap request, the call to the Data Access Layer SOAP service is done inside the `items_ws` node, and the response is mapped back to json item array in the `mapResponse` node.
-
-The `items_ws` node is a map to call the SOAP service via a `Request` node and process the response:
-
-![](docs/items-ws.png)  
-
-The `mapResponse` node is doing the data mapping to `json item` array:
-
-![](docs/map-json.png)
-
-The same logic / implementation pattern is done for the other flows supporting each REST operations. All the flows are defined in the integration/RESTAPI folder.
-
-| Operation | Flow name | Map |
-| --------- | -------- | ----- |
-| get item  | getId.subflow | getId_mapRequest, getId_mapResponse |
-| put item  | putId.subflow | putId_mapRequest, putId_mapResponse |
-| delete item  | deleteId.subflow | deleteId_mapRequest, deleteId_mapResponse |
-| get items | getItems.subflow | getItems_mapRequest, getItems_mapResponse |
-| post items | postItems.subflow | postItems_mapRequest, postItems_mapResponse |
 
 # Deployment
 There are three options for IIB application deployment:
@@ -171,7 +113,7 @@ To get visibility into the IIB runtime and server performance metrics, a APM age
 [The instructions are here](https://www.ibm.com/support/knowledgecenter/SSHLNR_8.1.4/com.ibm.pm.doc/install/iib_linux_aix_config_agent.htm#iib_linux_aix_config_agent)
 
 # Compendium
-* [See the global compendium](https://github.com/ibm-cloud-architecture/refarch-integration/blob/master/docs/compendium.md)
-* [Introduction video to IIB](https://img.youtube.com/vi/qQvT4kJoPTM/0.jpg)](https://www.youtube.com/watch?v=qQvT4kJoPTM)
+* [See the hybrid integration global compendium](https://github.com/ibm-cloud-architecture/refarch-integration/blob/master/docs/compendium.md)
+* [Introduction video to IIB](https://www.youtube.com/watch?v=qQvT4kJoPTM)
 * [Getting started with IIB](https://developer.ibm.com/integration/docs/ibm-integration-bus/get-started/get-started-with-ibm-integration-bus-for-developers/)
 * [Developing a REST API service lab](https://developer.ibm.com/integration/docs/ibm-integration-bus/self-study-labs/iib10-lab-2-developing-a-rest-api-service/)
