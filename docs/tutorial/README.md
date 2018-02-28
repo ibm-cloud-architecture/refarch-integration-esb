@@ -6,21 +6,27 @@ You could use docker to run IIB runtime. For instruction on how we did build the
 Be sure to reuse the swagger () and WSDL files ().
 
 ## Step by step tutorial
-This section addresses how the SOAP to REST mediation flow was created. We develop a REST API using IBM Integration Toolkit ([See product documentation](https://www.ibm.com/support/knowledgecenter/en/SSMKHH_10.0.0/com.ibm.etools.mft.doc/bi12036_.htm) and this [developer article](https://developer.ibm.com/integration/docs/ibm-integration-bus/get-started-developing-an-integration-solution-overview/)) following the steps below:
+This section addresses how the SOAP to REST mediation flow was created. We develop a REST API and integration solution using IBM Integration Toolkit ([See product documentation](https://www.ibm.com/support/knowledgecenter/en/SSMKHH_10.0.0/com.ibm.etools.mft.doc/bi12036_.htm) and this [developer article for generic development tasks](https://developer.ibm.com/integration/docs/ibm-integration-bus/get-started-developing-an-integration-solution-overview/)) following the steps below:
 ### 1- Select the implementation style
-We start by using a REST api integration style, so focusing on the consumer contract and using RESTful web services. The REST API describes a set of resources, and a set of operations that can be called on those resources. External applications can call the operations in a REST API from any HTTP client. The mediation flows integrate with existing SOAP web services to do interface mapping. So the style is also integration service.
+We start by using a REST api integration style, so focusing on the consumer contract using RESTful web services. The REST API describes a set of resources, and a set of operations that can be called on those resources. External applications can call the operations in a REST API from any HTTP client. The mediation flows integrate with existing SOAP web services to do interface mapping. So the style is also integration service. The figure below illustrates the applications we are developing
+
+![](iib-solution.png)
+
+* A mediation flow to expose REST api for items and Inventory
+* A mediation flow to do database integration and expose REST api for suppliers.
+
 Start the Integration toolkit with the command `iib toolkit`.
-1. Decide on reusable content that will be part of Library. We like reuse. Payload definition like item, inventory, supplier definitions are reusable. So we create a shared Library and copy the yaml, wsdl and xsd files into it. The Library can be imported in the Toolkit workspace from the integration/InventoryLibrary project. Shared libraries are deployed once in the runtime environment and shared by applications.
+1. Decide on reusable content that will be part of Library. We like reuse. Payload definition like item, inventory, supplier definitions are reusable. So we create a "Shared Library" and copy the wsdl and xsd files into it. The Library can be imported in the Toolkit workspace from the integration/InventoryLibrary project. Shared libraries are deployed once in the runtime environment and shared by applications.
 1. Create a REST API application using the Integration toolkit product: Create a REST api
  ![](createRESTapi.png)
 Select the swagger from the library:
  ![](import-swagger0.png)
- The expected result looks like:
+ The expected result looks like the figure below.
  ![](import-swagger.png)
 
 
 ### 2- Define resource for integration solution
-1. Define the resources and operations that will be exposed by the API using a swagger file. (We are reusing the swagger file defined in in integration/InventoryRESTapi/inventory-api_1.0.1.yaml).
+Define the resources and operations that will be exposed by the API using a swagger file. (We are reusing the swagger file defined in in integration/InventoryRESTapi/inventory-api_1.0.1.yaml).
 
 You can edit the file using a Swagger editor online at https://editor.swagger.io/.  
  ![](swagger-inv-api.png)
@@ -44,64 +50,68 @@ When designing REST API we used the following practices:
    * 422 – Non processable Entity – Should be used if the server cannot process the entity, e.g. if an image cannot be formatted or mandatory fields are missing in the payload.
    * 500 – Internal Server Error
 
-1. Define the data model (e.g. item and items objects were defined in the swagger file too). We have two message flow model to consider: the item on the REST api side, which is defined in the swagger:
+* Define the data model (e.g. item and items objects were defined in the swagger file too). We have two message flow models to consider: the item on the REST api side, which is defined in the swagger:
 
 ![inv-model](inv-model.png)
 and the SOAP envelop content defined by the imported XSD and shared in the Library:   
 ![](xsd.png)
 
+The inventory mediation flow will do the mapping between JSON and XML for items and inventory.
 
-1. Import the WSDL to consume using the Web Services Explorer (Import > Web services > Web Service), use the deployed DAL project at an URL like (http://dal.brown.case/inventory/ws?wsdl) and then import the wsdl into your integration/InventoryLibrary.  
+* We are delivering the WSDL in the Library. But you could have import the Data Access Layer WSDL using the Web Services Explorer (Import > Web services > Web Service), pointing to the URL of the ICP deployed component: (http://dal.brown.case/inventory/ws?wsdl) and then import the wsdl into your integration/InventoryLibrary.  
 ![](dal-wsdl.png)  
 
 ### 3- Implement subflows for each operation end point
-If you want to access the project, open the IIB toolkit and use import > General > Import existing project, then select the `refarch-integration-esb/integration/InventoryRESTapi` project.
-1. For each operation create a subflow using the icon on the right in the API editor. Here for getItems `/items` we have:
+If you want to access the project, open the IIB toolkit and use import > General > Import existing project, then select the `refarch-integration-esb/integration/InventoryRESTapis` project.
+1. For each operation create a subflow using the icon on the right in the API editor. We are demonstrating for the for getItems `/items` resource:  
  ![](create-operation-flow.png)
 
- The tool automatically generates input and output nodes and a flow.
+ The tool automatically generates input and output nodes and a subflow named: getitems.subflow.
 ![](in-out.png)   
 
-  We need to add the SOAP call to the remote web service, by drag and drop the dal-inventory.wsdl to the map: it opens a wizard to select the operation (items) to invoke.   
+  We need to add the SOAP call to the remote web service, by drag and drop the dal-inventory.wsdl to the map: it opens a wizard to help us selecting the operation (items) to invoke.   
 ![](items-invoke.png)
 
-  Then we add the mappings from string to XML and XML to JSON.
- ![](get-items-flow.png)  
-
- The `items_ws` node is a map to call the SOAP service via a `Request` node and process the response. The flow below was created automatically by the wizard.
+ The `items_dal_inventory_getItems` node is a map to call the SOAP service via a `Request` node and process the response. The flow is created automatically by the wizard, and includes fault reporting and payload extraction:
 
  ![](items-ws.png)  
 
- For the input map, there is not so much to do, as the /items has not parameter:
- * Add a Transformation map to the main items flow.
- * Add inputs as BLOB message model and items from the WSDL:  
+The request node is doing the HTTP call to the DALService `items` binding operation.  
+ ![](request-items.png)
+
+ We need to add the mappings from string to XML and XML to JSON.
+![](get-items-flow.png)  
+
+ For the input mapping, there is not so much to do, as the /items has not parameter:
+ * Add a Transformation map to the message flow, name it `mapRequest`.
+ * Add inputs as BLOB message model and for the output use the `items` operation from the WSDL:  
   ![](mapRequest.png)  
 
 To transform the XML items response to JSON array do the following:
 * Add a transformation mapping
 * Specify the itemsResponse and the JSON items
  ![](mapResp.png)
-* For each items do a mappings
+* Add HTTP Reply header assemble element, by using the `General tab` on the Message Assembly and the Header and folders properties.
+
+ ![](adding-assembly-element.png)
+* Assign the 'Ceontent-type' to application/json
+* For each items of the itemsResponse do a mappingt to the Data JSON array items. Clicking on the For Each transform you can see the map below.
  ![](mapItems.png)
+ Be sure to use convert transform for numerical fields.
 
-(see [this note in knowledge center ](https://www.ibm.com/support/knowledgecenter/SSMKHH_10.0.0/com.ibm.etools.mft.doc/sm12030_.htm))
-
-
-
-1. For the `getId` operation is mapped to `itemById` binding operation.
+(see [this note about REST Api implementation with message map in knowledge center ](https://www.ibm.com/support/knowledgecenter/SSMKHH_10.0.0/com.ibm.etools.mft.doc/sm12030_.htm))
 
 
+### Get by id
 
 As illustrated in the figure below, the `/item/{id}` path get the `id` string as input and return a item object:
 ![Get items](getitem-resource.png)
 
-
-
-The project needs to do protocol and data mapping, via the implementation of flows. ([See product documentation](https://www.ibm.com/support/knowledgecenter/en/SSMKHH_10.0.0/com.ibm.etools.mft.doc/bi12020_.htm)).  
-
-
+* open the message flow editor, drag and drop the wsdl and select the getItemById operation.
+* Add map request mapping. The input message assebley is a BLOB, within which you need to add the local environment property, to access the REST parameter:
+![](REST-parameter.png)  
+Use Add element contextual menu to add the id parameter. Add a move transform.
 The input string is mapped to the `itemId` of the soap request, the call to the Data Access Layer SOAP service is done inside the `items_ws` node, and the response is mapped back to json item array in the `mapResponse` node.
-
 
 The `mapResponse` node is doing the data mapping to `json item` array:
 
@@ -116,3 +126,6 @@ The same logic / implementation pattern is done for the other flows supporting e
 | delete item  | deleteId.subflow | deleteId_mapRequest, deleteId_mapResponse |
 | get items | getItems.subflow | getItems_mapRequest, getItems_mapResponse |
 | post items | postItems.subflow | postItems_mapRequest, postItems_mapResponse |
+
+## Other readings
+* Protocol and data mapping, via the implementation of flows. ([See product documentation](https://www.ibm.com/support/knowledgecenter/en/SSMKHH_10.0.0/com.ibm.etools.mft.doc/bi12020_.htm)).  

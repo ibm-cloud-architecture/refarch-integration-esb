@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<IntegrationNodeConnectionParameters Version="10.0.0" host="172.16.254.83" integrationNodeName="iibv10" listenerPort="4414" userName="virtuser" xmlns="http://www.ibm.com/xmlns/prod/websphere/iib/8/IntegrationNodeConnectionParameters"/>
