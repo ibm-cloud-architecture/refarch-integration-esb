@@ -1,0 +1,114 @@
+
+
+Importing file: Z:\jeromeboyer\Code\BrownCompute\refarch-integration-esb\integration\InventoryLibrary\inventory-dal.wsdl
+
+The WSDL import will proceed with bindings DALServiceServiceSoapBinding.
+Creating wsdl schema document for file:///Z:/jeromeboyer/Code/BrownCompute/refarch-integration-esb/integration/InventoryLibrary/inventory-dal.wsdl.
+Parsing wsdl binding {http://ws.inventory/}DALServiceServiceSoapBinding.
+Parsing wsdl binding input updateInventoryEntry.
+Parsing wsdl binding output updateInventoryEntry.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input getInventoryForSiteAndItemId.
+Parsing wsdl binding output getInventoryForSiteAndItemId.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input deleteItems.
+Parsing wsdl binding output deleteItems.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input getItemsPerSite.
+Parsing wsdl binding output getItemsPerSite.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input getInventoryById.
+Parsing wsdl binding output getInventoryById.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input getInventoryPerSite.
+Parsing wsdl binding output getInventoryPerSite.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input supplierById.
+Parsing wsdl binding output supplierById.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input getSuppliersOfItem.
+Parsing wsdl binding output getSuppliersOfItem.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input updateItem.
+Parsing wsdl binding output updateItem.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input deleteSupplier.
+Parsing wsdl binding output deleteSupplier.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input getItemStock.
+Parsing wsdl binding output getItemStock.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input newItem.
+Parsing wsdl binding output newItem.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input sayHello.
+Parsing wsdl binding output sayHello.
+Parsing wsdl binding input itemById.
+Parsing wsdl binding output itemById.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input addItemToSite.
+Parsing wsdl binding output addItemToSite.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input getInventoryPerSupplier.
+Parsing wsdl binding output getInventoryPerSupplier.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input getInventoryCrossSite.
+Parsing wsdl binding output getInventoryCrossSite.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input sellItem.
+Parsing wsdl binding output sellItem.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input itemByName.
+Parsing wsdl binding output itemByName.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input getItems.
+Parsing wsdl binding output getItems.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input supplierByName.
+Parsing wsdl binding output supplierByName.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input updateSupplier.
+Parsing wsdl binding output updateSupplier.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input newSupplier.
+Parsing wsdl binding output newSupplier.
+Parsing wsdl binding fault DALException.
+Parsing wsdl binding input suppliers.
+Parsing wsdl binding output suppliers.
+Parsing wsdl binding fault DALException.
+Processing doc style for operation updateInventoryEntry.
+Processing doc style for operation getInventoryForSiteAndItemId.
+Processing doc style for operation deleteItems.
+Processing doc style for operation getItemsPerSite.
+Processing doc style for operation getInventoryById.
+Processing doc style for operation getInventoryPerSite.
+Processing doc style for operation supplierById.
+Processing doc style for operation getSuppliersOfItem.
+Processing doc style for operation updateItem.
+Processing doc style for operation deleteSupplier.
+Processing doc style for operation getItemStock.
+Processing doc style for operation newItem.
+Processing doc style for operation sayHello.
+Processing doc style for operation itemById.
+Processing doc style for operation addItemToSite.
+Processing doc style for operation getInventoryPerSupplier.
+Processing doc style for operation getInventoryCrossSite.
+Processing doc style for operation sellItem.
+Processing doc style for operation itemByName.
+Processing doc style for operation getItems.
+Processing doc style for operation supplierByName.
+Processing doc style for operation updateSupplier.
+Processing doc style for operation newSupplier.
+Processing doc style for operation suppliers.
+Populating WSDL schema inventory-dal.xsd.
+Creating file inventory-dal.xsd in the workspace.
+Creating file inventory-dal_InlineSchema1.xsd in the workspace.
+Copying source WSDL inventory-dal.wsdl to inventory-dal.wsdl.
+
+Elapsed time processing this message definition file: 3.385 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

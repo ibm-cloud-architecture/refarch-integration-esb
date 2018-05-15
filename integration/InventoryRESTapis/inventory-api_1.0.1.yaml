@@ -1,0 +1,191 @@
+---
+swagger: "2.0"
+info:
+  x-ibm-name: "inventory-api"
+  title: "inventory api"
+  version: "1.0.1"
+schemes:
+- "https"
+basePath: "/inventory-apis-iib"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /items:
+    get:
+      responses:
+        200:
+          description: "200 OK"
+          schema:
+            $ref: "#/definitions/items"
+      operationId: "getItems"
+    post:
+      responses:
+        201:
+          description: "201 new resource successfully created"
+          schema:
+            $ref: "#/definitions/item"
+      operationId: "postItem"
+      parameters:
+      - name: "body"
+        required: false
+        in: "body"
+        schema:
+          $ref: "#/definitions/item"
+        description: "{\"id\":999,\"name\":\"item999\",\"description\":\"\",\"price\"\
+          :999.99}"
+  /items/{id}:
+    parameters:
+    - name: "id"
+      type: "string"
+      required: true
+      in: "path"
+    get:
+      responses:
+        200:
+          description: "200 OK"
+          schema:
+            $ref: "#/definitions/item"
+      operationId: "getItemById"
+    put:
+      responses:
+        200:
+          description: "200 OK"
+          schema:
+            $ref: "#/definitions/item"
+      operationId: "putItem"
+      parameters:
+      - name: "item"
+        required: true
+        in: "body"
+        schema:
+          $ref: "#/definitions/item"
+    delete:
+      responses:
+        204:
+          description: "204 Entity successfully deleted"
+          schema:
+            type: "string"
+      operationId: "deleteItemById"
+  /inventories:
+    get:
+      responses:
+        200:
+          description: "200 is OK"
+          schema:
+            $ref: "#/definitions/inventories"
+      operationId: "getInventories"
+    post:
+      responses:
+        201:
+          description: "201 new resource successfully created"
+          schema:
+            $ref: "#/definitions/inventory"
+      operationId: "postInventory"
+      parameters:
+      - name: "body"
+        required: false
+        in: "body"
+        schema:
+          $ref: "#/definitions/inventory"
+  /inventories/{id}:
+    parameters:
+    - name: "id"
+      type: "string"
+      required: true
+      in: "path"
+    get:
+      responses:
+        200:
+          description: "200 OK"
+          schema:
+            $ref: "#/definitions/inventory"
+      operationId: "getInventoryById"
+    put:
+      responses:
+        200:
+          description: "200 OK"
+          schema:
+            $ref: "#/definitions/inventory"
+      operationId: "putInventory"
+      parameters:
+      - name: "inventoryRecord"
+        required: true
+        in: "body"
+        schema:
+          $ref: "#/definitions/inventory"
+    delete:
+      responses:
+        204:
+          description: "204 Entity successfully deleted"
+          schema:
+            type: "string"
+      operationId: "deleteInventoryById"
+definitions:
+  item:
+    properties:
+      id:
+        type: "integer"
+        description: "unique id"
+        format: "int32"
+      name:
+        type: "string"
+        description: "item's name"
+      description:
+        type: "string"
+      price:
+        type: "number"
+        description: "item's price"
+        format: "float"
+      imgAlt:
+        type: "string"
+      img:
+        type: "string"
+      quantity:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      serialNumber:
+        type: "string"
+      model:
+        type: "string"
+    additionalProperties: false
+    required:
+    - "name"
+  items:
+    type: "array"
+    items:
+      $ref: "#/definitions/item"
+  inventories:
+    type: "array"
+    items:
+      $ref: "#/definitions/inventory"
+  inventory:
+    properties:
+      id:
+        type: "integer"
+        description: "unique id for the inventory record"
+        format: "int32"
+      customerId:
+        type: "integer"
+        description: "customer id when a purchase"
+        format: "int32"
+      itemId:
+        type: "integer"
+        description: "item id purchased or provisionned"
+        format: "int32"
+      supplierId:
+        type: "integer"
+        description: "supplier id when provision"
+        format: "int32"
+      quantity:
+        type: "integer"
+        format: "int32"
+      price:
+        type: "integer"
+        format: "float"
+      site:
+        type: "string"
+tags: []

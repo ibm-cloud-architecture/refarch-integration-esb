@@ -7,10 +7,12 @@ Within a microservice architecture, we assert that it is perfectly reasonable to
 There are two ways to deploy IBM Integration Bus: using your own packaging or using ICP catalog.
 
 # Using ICP catalog
-Go to ICP catalog and search for ibm-integration-bus-dev chart:
+This chart deploys a single "IBM Integration Bus for Developers" integration node, containing a single integration server. It is used for development purpose and support deploying multiple integration solutions.
+
+Go to ICP catalog and search for ibm-integration-bus-dev chart:  
+
 ![](img/icp-catalog.png)  
 
-This chart deploys a single IBM Integration Bus for Developers integration node, containing a single integration server.
 
 Use the **configure** button at the bottom and enter the name of the chart release: **brown-iib** and the namespace to use: **browncompute**, accept the license agreements. Use the default parameters which specify the docker image name and version, the IIB node and server names, and defined a kubernetes service to access the IIB runtime via a NodePort:  
 ![](img/iib-serv-spec.png)

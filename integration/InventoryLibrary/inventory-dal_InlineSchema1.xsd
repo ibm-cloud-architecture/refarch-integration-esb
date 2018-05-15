@@ -1,12 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ws.inventory/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.inventory/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+attributeFormDefault="unqualified" 
+elementFormDefault="unqualified" 
+targetNamespace="http://ws.inventory/" 
+xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" 
+xmlns:ns1="http://schemas.xmlsoap.org/soap/http" 
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:tns="http://ws.inventory/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <xs:element name="Item" type="tns:item"/>
   <xs:element name="Supplier" type="tns:supplier"/>
   <xs:element ibmSchExtn:docRoot="true" name="addItemToSite" type="tns:addItemToSite"/>
   <xs:element ibmSchExtn:docRoot="true" name="addItemToSiteResponse" type="tns:addItemToSiteResponse"/>
-  <xs:element ibmSchExtn:docRoot="true" name="deleteInventoryEntry" type="tns:deleteInventoryEntry"/>
-  <xs:element ibmSchExtn:docRoot="true" name="deleteInventoryEntryResponse" type="tns:deleteInventoryEntryResponse"/>
-  <xs:element ibmSchExtn:docRoot="true" name="deleteItem" type="tns:deleteItem"/>
-  <xs:element ibmSchExtn:docRoot="true" name="deleteItemResponse" type="tns:deleteItemResponse"/>
+  <xs:element ibmSchExtn:docRoot="true" name="deleteItems" type="tns:deleteItems"/>
+  <xs:element ibmSchExtn:docRoot="true" name="deleteItemsResponse" type="tns:deleteItemsResponse"/>
   <xs:element ibmSchExtn:docRoot="true" name="deleteSupplier" type="tns:deleteSupplier"/>
   <xs:element ibmSchExtn:docRoot="true" name="deleteSupplierResponse" type="tns:deleteSupplierResponse"/>
   <xs:element ibmSchExtn:docRoot="true" name="getInventoryById" type="tns:getInventoryById"/>
@@ -21,26 +26,22 @@
   <xs:element ibmSchExtn:docRoot="true" name="getInventoryPerSupplierResponse" type="tns:getInventoryPerSupplierResponse"/>
   <xs:element ibmSchExtn:docRoot="true" name="getItemStock" type="tns:getItemStock"/>
   <xs:element ibmSchExtn:docRoot="true" name="getItemStockResponse" type="tns:getItemStockResponse"/>
+  <xs:element ibmSchExtn:docRoot="true" name="getItems" type="tns:getItems"/>
   <xs:element ibmSchExtn:docRoot="true" name="getItemsPerSite" type="tns:getItemsPerSite"/>
   <xs:element ibmSchExtn:docRoot="true" name="getItemsPerSiteResponse" type="tns:getItemsPerSiteResponse"/>
+  <xs:element ibmSchExtn:docRoot="true" name="getItemsResponse" type="tns:getItemsResponse"/>
   <xs:element ibmSchExtn:docRoot="true" name="getSuppliersOfItem" type="tns:getSuppliersOfItem"/>
   <xs:element ibmSchExtn:docRoot="true" name="getSuppliersOfItemResponse" type="tns:getSuppliersOfItemResponse"/>
   <xs:element ibmSchExtn:docRoot="true" name="itemById" type="tns:itemById"/>
   <xs:element ibmSchExtn:docRoot="true" name="itemByIdResponse" type="tns:itemByIdResponse"/>
   <xs:element ibmSchExtn:docRoot="true" name="itemByName" type="tns:itemByName"/>
   <xs:element ibmSchExtn:docRoot="true" name="itemByNameResponse" type="tns:itemByNameResponse"/>
-  <xs:element ibmSchExtn:docRoot="true" name="items" type="tns:items"/>
-  <xs:element ibmSchExtn:docRoot="true" name="itemsResponse" type="tns:itemsResponse"/>
   <xs:element ibmSchExtn:docRoot="true" name="newItem" type="tns:newItem"/>
   <xs:element ibmSchExtn:docRoot="true" name="newItemResponse" type="tns:newItemResponse"/>
   <xs:element ibmSchExtn:docRoot="true" name="newSupplier" type="tns:newSupplier"/>
   <xs:element ibmSchExtn:docRoot="true" name="newSupplierResponse" type="tns:newSupplierResponse"/>
-  <xs:element ibmSchExtn:docRoot="true" name="provisionItem" type="tns:provisionItem"/>
-  <xs:element ibmSchExtn:docRoot="true" name="provisionItemResponse" type="tns:provisionItemResponse"/>
   <xs:element ibmSchExtn:docRoot="true" name="sayHello" type="tns:sayHello"/>
   <xs:element ibmSchExtn:docRoot="true" name="sayHelloResponse" type="tns:sayHelloResponse"/>
-  <xs:element ibmSchExtn:docRoot="true" name="searchByName" type="tns:searchByName"/>
-  <xs:element ibmSchExtn:docRoot="true" name="searchByNameResponse" type="tns:searchByNameResponse"/>
   <xs:element ibmSchExtn:docRoot="true" name="sellItem" type="tns:sellItem"/>
   <xs:element ibmSchExtn:docRoot="true" name="sellItemResponse" type="tns:sellItemResponse"/>
   <xs:element ibmSchExtn:docRoot="true" name="supplierById" type="tns:supplierById"/>
@@ -55,20 +56,55 @@
   <xs:element ibmSchExtn:docRoot="true" name="updateItemResponse" type="tns:updateItemResponse"/>
   <xs:element ibmSchExtn:docRoot="true" name="updateSupplier" type="tns:updateSupplier"/>
   <xs:element ibmSchExtn:docRoot="true" name="updateSupplierResponse" type="tns:updateSupplierResponse"/>
-  <xs:complexType name="deleteInventoryEntry">
+  <xs:complexType name="updateInventoryEntry">
     <xs:sequence>
-      <xs:element name="arg0" type="xs:long"/>
+      <xs:element minOccurs="0" name="arg0" type="tns:inventory"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="deleteInventoryEntryResponse">
+  <xs:complexType name="inventory">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="xs:string"/>
+      <xs:element minOccurs="0" name="cost" type="xs:double"/>
+      <xs:element minOccurs="0" name="creationDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="customerId" type="xs:long"/>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="itemId" type="xs:long"/>
+      <xs:element minOccurs="0" name="quantity" type="xs:int"/>
+      <xs:element minOccurs="0" name="site" type="xs:string"/>
+      <xs:element minOccurs="0" name="soldPrice" type="xs:double"/>
+      <xs:element minOccurs="0" name="supplierId" type="xs:long"/>
+      <xs:element minOccurs="0" name="updateDate" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateInventoryEntryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:inventory"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="dalFault">
     <xs:sequence>
       <xs:element minOccurs="0" name="code" type="xs:string"/>
       <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getInventoryForSiteAndItemId">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:long"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getInventoryForSiteAndItemIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:inventory"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteItems">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteItemsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="getItemsPerSite">
@@ -95,119 +131,12 @@
       <xs:element minOccurs="0" name="model" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="provisionItem">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:item"/>
-      <xs:element minOccurs="0" name="arg1" type="tns:supplier"/>
-      <xs:element minOccurs="0" name="arg2" type="xs:string"/>
-      <xs:element name="arg3" type="xs:int"/>
-      <xs:element name="arg4" type="xs:double"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="supplier">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="id" nillable="true" type="xs:long"/>
-      <xs:element minOccurs="0" name="name" type="xs:string"/>
-      <xs:element minOccurs="0" name="type" type="xs:string"/>
-      <xs:element minOccurs="0" name="status" type="xs:string"/>
-      <xs:element minOccurs="0" name="street" type="xs:string"/>
-      <xs:element minOccurs="0" name="city" type="xs:string"/>
-      <xs:element minOccurs="0" name="zipcode" type="xs:string"/>
-      <xs:element minOccurs="0" name="state" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="provisionItemResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:inventory"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="inventory">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="cost" type="xs:double"/>
-      <xs:element minOccurs="0" name="creationDate" type="xs:dateTime"/>
-      <xs:element minOccurs="0" name="customerId" type="xs:long"/>
-      <xs:element minOccurs="0" name="id" type="xs:long"/>
-      <xs:element minOccurs="0" name="itemId" type="xs:long"/>
-      <xs:element minOccurs="0" name="quantity" type="xs:int"/>
-      <xs:element minOccurs="0" name="site" type="xs:string"/>
-      <xs:element minOccurs="0" name="soldPrice" type="xs:double"/>
-      <xs:element minOccurs="0" name="supplierId" type="xs:long"/>
-      <xs:element minOccurs="0" name="updateDate" type="xs:dateTime"/>
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="getInventoryById">
     <xs:sequence>
       <xs:element name="arg0" type="xs:long"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="getInventoryByIdResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:inventory"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="getInventoryCrossSite">
-    <xs:sequence/>
-  </xs:complexType>
-  <xs:complexType name="getInventoryCrossSiteResponse">
-    <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:inventory"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="deleteSupplier">
-    <xs:sequence>
-      <xs:element name="arg0" type="xs:long"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="deleteSupplierResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="searchByName">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="searchByNameResponse">
-    <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:item"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="items">
-    <xs:sequence/>
-  </xs:complexType>
-  <xs:complexType name="itemsResponse">
-    <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:item"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="getInventoryPerSupplier">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="xs:long"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="getInventoryPerSupplierResponse">
-    <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:inventory"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="getSuppliersOfItem">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="xs:long"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="getSuppliersOfItemResponse">
-    <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:supplier"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="getInventoryForSiteAndItemId">
-    <xs:sequence>
-      <xs:element name="arg0" type="xs:long"/>
-      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="getInventoryForSiteAndItemIdResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="tns:inventory"/>
     </xs:sequence>
@@ -222,44 +151,26 @@
       <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:inventory"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="itemByName">
+  <xs:complexType name="getSuppliersOfItem">
     <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getSuppliersOfItemResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:supplier"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="supplier">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" nillable="true" type="xs:long"/>
       <xs:element minOccurs="0" name="name" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="itemByNameResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:item"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="deleteItem">
-    <xs:sequence>
-      <xs:element name="id" type="xs:long"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="deleteItemResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="supplierByName">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="supplierByNameResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:supplier"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="updateInventoryEntry">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:inventory"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="updateInventoryEntryResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:inventory"/>
+      <xs:element minOccurs="0" name="type" type="xs:string"/>
+      <xs:element minOccurs="0" name="status" type="xs:string"/>
+      <xs:element minOccurs="0" name="street" type="xs:string"/>
+      <xs:element minOccurs="0" name="city" type="xs:string"/>
+      <xs:element minOccurs="0" name="zipcode" type="xs:string"/>
+      <xs:element minOccurs="0" name="state" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="supplierById">
@@ -270,6 +181,64 @@
   <xs:complexType name="supplierByIdResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="tns:supplier"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:item"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateItemResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:item"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteSupplier">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteSupplierResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getItemStock">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getItemStockResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="newItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:item"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="newItemResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:item"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sayHello">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="sayHelloResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="itemById">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="itemByIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:item"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="addItemToSite">
@@ -286,54 +255,22 @@
       <xs:element minOccurs="0" name="return" type="tns:inventory"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="getItemStock">
+  <xs:complexType name="getInventoryPerSupplier">
     <xs:sequence>
       <xs:element minOccurs="0" name="arg0" type="xs:long"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="getItemStockResponse">
+  <xs:complexType name="getInventoryPerSupplierResponse">
     <xs:sequence>
-      <xs:element name="return" type="xs:int"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:inventory"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="sayHello">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="name" type="xs:string"/>
-    </xs:sequence>
+  <xs:complexType name="getInventoryCrossSite">
+    <xs:sequence/>
   </xs:complexType>
-  <xs:complexType name="sayHelloResponse">
+  <xs:complexType name="getInventoryCrossSiteResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="newItem">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:item"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="newItemResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:item"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="updateItem">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:item"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="updateItemResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:item"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="newSupplier">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:supplier"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="newSupplierResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:supplier"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:inventory"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="sellItem">
@@ -350,6 +287,34 @@
       <xs:element minOccurs="0" name="return" type="tns:inventory"/>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="itemByName">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="itemByNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:item"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getItems">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getItemsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:item"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="supplierByName">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="supplierByNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:supplier"/>
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="updateSupplier">
     <xs:sequence>
       <xs:element minOccurs="0" name="arg0" type="tns:supplier"/>
@@ -360,22 +325,22 @@
       <xs:element minOccurs="0" name="return" type="tns:supplier"/>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="newSupplier">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:supplier"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="newSupplierResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:supplier"/>
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="suppliers">
     <xs:sequence/>
   </xs:complexType>
   <xs:complexType name="suppliersResponse">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:supplier"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="itemById">
-    <xs:sequence>
-      <xs:element name="id" type="xs:long"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="itemByIdResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:item"/>
     </xs:sequence>
   </xs:complexType>
   <xs:element ibmSchExtn:docRoot="true" name="DALFault" nillable="true" type="tns:dalFault"/>

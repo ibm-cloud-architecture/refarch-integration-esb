@@ -2,34 +2,107 @@
   <wsdl:documentation>
     <wsdl:appinfo source="WMQI_APPINFO">
       <MRWSDLAppInfo imported="true">
-        <generatedXSD location="dal-inventory_InlineSchema1.xsd"/>
+        <generatedXSD location="inventory-dal_InlineSchema1.xsd"/>
         <binding hasEncoding="false" imported="true" name="DALServiceServiceSoapBinding" originalBindingStyle="document"/>
       </MRWSDLAppInfo>
     </wsdl:appinfo>
   </wsdl:documentation>
   <wsdl:types>
+
           <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ws.inventory/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
-<xsd:include schemaLocation="dal-inventory_InlineSchema1.xsd"/>
+<xsd:include schemaLocation="inventory-dal_InlineSchema1.xsd"/>
     </xs:schema>
     </wsdl:types>
-  <wsdl:message name="newItemResponse">
-    <wsdl:part element="tns:newItemResponse" name="parameters">
+  <wsdl:message name="updateInventoryEntry">
+    <wsdl:part element="tns:updateInventoryEntry" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInventoryForSiteAndItemId">
+    <wsdl:part element="tns:getInventoryForSiteAndItemId" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateInventoryEntryResponse">
+    <wsdl:part element="tns:updateInventoryEntryResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getItemsPerSite">
     <wsdl:part element="tns:getItemsPerSite" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="getInventoryById">
+    <wsdl:part element="tns:getInventoryById" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DALException">
+    <wsdl:part element="tns:DALFault" name="DALException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInventoryByIdResponse">
+    <wsdl:part element="tns:getInventoryByIdResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSuppliersOfItem">
+    <wsdl:part element="tns:getSuppliersOfItem" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="getInventoryCrossSiteResponse">
     <wsdl:part element="tns:getInventoryCrossSiteResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="provisionItem">
-    <wsdl:part element="tns:provisionItem" name="parameters">
+  <wsdl:message name="deleteSupplier">
+    <wsdl:part element="tns:deleteSupplier" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="getInventoryById">
-    <wsdl:part element="tns:getInventoryById" name="parameters">
+  <wsdl:message name="suppliersResponse">
+    <wsdl:part element="tns:suppliersResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInventoryPerSiteResponse">
+    <wsdl:part element="tns:getInventoryPerSiteResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInventoryPerSupplierResponse">
+    <wsdl:part element="tns:getInventoryPerSupplierResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteItemsResponse">
+    <wsdl:part element="tns:deleteItemsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInventoryPerSupplier">
+    <wsdl:part element="tns:getInventoryPerSupplier" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInventoryCrossSite">
+    <wsdl:part element="tns:getInventoryCrossSite" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sellItem">
+    <wsdl:part element="tns:sellItem" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="itemByNameResponse">
+    <wsdl:part element="tns:itemByNameResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="supplierByName">
+    <wsdl:part element="tns:supplierByName" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="itemByIdResponse">
+    <wsdl:part element="tns:itemByIdResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="supplierByNameResponse">
+    <wsdl:part element="tns:supplierByNameResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="newSupplier">
+    <wsdl:part element="tns:newSupplier" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInventoryForSiteAndItemIdResponse">
+    <wsdl:part element="tns:getInventoryForSiteAndItemIdResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getSuppliersOfItemResponse">
@@ -40,275 +113,107 @@
     <wsdl:part element="tns:getItemStockResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="getInventoryCrossSite">
-    <wsdl:part element="tns:getInventoryCrossSite" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="searchByName">
-    <wsdl:part element="tns:searchByName" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getInventoryPerSiteResponse">
-    <wsdl:part element="tns:getInventoryPerSiteResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getSuppliersOfItem">
-    <wsdl:part element="tns:getSuppliersOfItem" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getInventoryPerSite">
-    <wsdl:part element="tns:getInventoryPerSite" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="itemByName">
-    <wsdl:part element="tns:itemByName" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="deleteItem">
-    <wsdl:part element="tns:deleteItem" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="supplierByName">
-    <wsdl:part element="tns:supplierByName" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="updateInventoryEntry">
-    <wsdl:part element="tns:updateInventoryEntry" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="supplierById">
-    <wsdl:part element="tns:supplierById" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="addItemToSite">
-    <wsdl:part element="tns:addItemToSite" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="deleteItemResponse">
-    <wsdl:part element="tns:deleteItemResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="itemByIdResponse">
-    <wsdl:part element="tns:itemByIdResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="newItem">
-    <wsdl:part element="tns:newItem" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="updateItem">
-    <wsdl:part element="tns:updateItem" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="newSupplier">
-    <wsdl:part element="tns:newSupplier" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="sellItem">
-    <wsdl:part element="tns:sellItem" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="updateSupplier">
-    <wsdl:part element="tns:updateSupplier" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="supplierByIdResponse">
-    <wsdl:part element="tns:supplierByIdResponse" name="parameters">
+  <wsdl:message name="deleteItems">
+    <wsdl:part element="tns:deleteItems" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="updateSupplierResponse">
     <wsdl:part element="tns:updateSupplierResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="deleteInventoryEntry">
-    <wsdl:part element="tns:deleteInventoryEntry" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="updateItemResponse">
-    <wsdl:part element="tns:updateItemResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="itemsResponse">
-    <wsdl:part element="tns:itemsResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getInventoryByIdResponse">
-    <wsdl:part element="tns:getInventoryByIdResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getInventoryForSiteAndItemIdResponse">
-    <wsdl:part element="tns:getInventoryForSiteAndItemIdResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="itemByNameResponse">
-    <wsdl:part element="tns:itemByNameResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="updateInventoryEntryResponse">
-    <wsdl:part element="tns:updateInventoryEntryResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="deleteSupplier">
-    <wsdl:part element="tns:deleteSupplier" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="items">
-    <wsdl:part element="tns:items" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="deleteInventoryEntryResponse">
-    <wsdl:part element="tns:deleteInventoryEntryResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getInventoryPerSupplier">
-    <wsdl:part element="tns:getInventoryPerSupplier" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getItemsPerSiteResponse">
-    <wsdl:part element="tns:getItemsPerSiteResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getInventoryForSiteAndItemId">
-    <wsdl:part element="tns:getInventoryForSiteAndItemId" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="newSupplierResponse">
-    <wsdl:part element="tns:newSupplierResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="provisionItemResponse">
-    <wsdl:part element="tns:provisionItemResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getItemStock">
-    <wsdl:part element="tns:getItemStock" name="parameters">
+  <wsdl:message name="getInventoryPerSite">
+    <wsdl:part element="tns:getInventoryPerSite" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="addItemToSiteResponse">
     <wsdl:part element="tns:addItemToSiteResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="getInventoryPerSupplierResponse">
-    <wsdl:part element="tns:getInventoryPerSupplierResponse" name="parameters">
+  <wsdl:message name="supplierById">
+    <wsdl:part element="tns:supplierById" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="sayHello">
-    <wsdl:part element="tns:sayHello" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="supplierByNameResponse">
-    <wsdl:part element="tns:supplierByNameResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="searchByNameResponse">
-    <wsdl:part element="tns:searchByNameResponse" name="parameters">
+  <wsdl:message name="updateItem">
+    <wsdl:part element="tns:updateItem" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="sayHelloResponse">
     <wsdl:part element="tns:sayHelloResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="sellItemResponse">
-    <wsdl:part element="tns:sellItemResponse" name="parameters">
+  <wsdl:message name="getItemStock">
+    <wsdl:part element="tns:getItemStock" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="DALException">
-    <wsdl:part element="tns:DALFault" name="DALException">
+  <wsdl:message name="supplierByIdResponse">
+    <wsdl:part element="tns:supplierByIdResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="suppliers">
-    <wsdl:part element="tns:suppliers" name="parameters">
+  <wsdl:message name="newItem">
+    <wsdl:part element="tns:newItem" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="deleteSupplierResponse">
-    <wsdl:part element="tns:deleteSupplierResponse" name="parameters">
+  <wsdl:message name="sayHello">
+    <wsdl:part element="tns:sayHello" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="itemById">
     <wsdl:part element="tns:itemById" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="suppliersResponse">
-    <wsdl:part element="tns:suppliersResponse" name="parameters">
+  <wsdl:message name="updateItemResponse">
+    <wsdl:part element="tns:updateItemResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addItemToSite">
+    <wsdl:part element="tns:addItemToSite" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteSupplierResponse">
+    <wsdl:part element="tns:deleteSupplierResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="itemByName">
+    <wsdl:part element="tns:itemByName" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="newItemResponse">
+    <wsdl:part element="tns:newItemResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getItems">
+    <wsdl:part element="tns:getItems" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateSupplier">
+    <wsdl:part element="tns:updateSupplier" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getItemsPerSiteResponse">
+    <wsdl:part element="tns:getItemsPerSiteResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="newSupplierResponse">
+    <wsdl:part element="tns:newSupplierResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="suppliers">
+    <wsdl:part element="tns:suppliers" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sellItemResponse">
+    <wsdl:part element="tns:sellItemResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getItemsResponse">
+    <wsdl:part element="tns:getItemsResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="DALService">
-    <wsdl:operation name="deleteInventoryEntry">
-      <wsdl:input message="tns:deleteInventoryEntry" name="deleteInventoryEntry">
+    <wsdl:operation name="updateInventoryEntry">
+      <wsdl:input message="tns:updateInventoryEntry" name="updateInventoryEntry">
     </wsdl:input>
-      <wsdl:output message="tns:deleteInventoryEntryResponse" name="deleteInventoryEntryResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:DALException" name="DALException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getItemsPerSite">
-      <wsdl:input message="tns:getItemsPerSite" name="getItemsPerSite">
-    </wsdl:input>
-      <wsdl:output message="tns:getItemsPerSiteResponse" name="getItemsPerSiteResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:DALException" name="DALException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="provisionItem">
-      <wsdl:input message="tns:provisionItem" name="provisionItem">
-    </wsdl:input>
-      <wsdl:output message="tns:provisionItemResponse" name="provisionItemResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:DALException" name="DALException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getInventoryById">
-      <wsdl:input message="tns:getInventoryById" name="getInventoryById">
-    </wsdl:input>
-      <wsdl:output message="tns:getInventoryByIdResponse" name="getInventoryByIdResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:DALException" name="DALException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getInventoryCrossSite">
-      <wsdl:input message="tns:getInventoryCrossSite" name="getInventoryCrossSite">
-    </wsdl:input>
-      <wsdl:output message="tns:getInventoryCrossSiteResponse" name="getInventoryCrossSiteResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:DALException" name="DALException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="deleteSupplier">
-      <wsdl:input message="tns:deleteSupplier" name="deleteSupplier">
-    </wsdl:input>
-      <wsdl:output message="tns:deleteSupplierResponse" name="deleteSupplierResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:DALException" name="DALException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="searchByName">
-      <wsdl:input message="tns:searchByName" name="searchByName">
-    </wsdl:input>
-      <wsdl:output message="tns:searchByNameResponse" name="searchByNameResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:DALException" name="DALException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="items">
-      <wsdl:input message="tns:items" name="items">
-    </wsdl:input>
-      <wsdl:output message="tns:itemsResponse" name="itemsResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:DALException" name="DALException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getInventoryPerSupplier">
-      <wsdl:input message="tns:getInventoryPerSupplier" name="getInventoryPerSupplier">
-    </wsdl:input>
-      <wsdl:output message="tns:getInventoryPerSupplierResponse" name="getInventoryPerSupplierResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:DALException" name="DALException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getSuppliersOfItem">
-      <wsdl:input message="tns:getSuppliersOfItem" name="getSuppliersOfItem">
-    </wsdl:input>
-      <wsdl:output message="tns:getSuppliersOfItemResponse" name="getSuppliersOfItemResponse">
+      <wsdl:output message="tns:updateInventoryEntryResponse" name="updateInventoryEntryResponse">
     </wsdl:output>
       <wsdl:fault message="tns:DALException" name="DALException">
     </wsdl:fault>
@@ -321,6 +226,30 @@
       <wsdl:fault message="tns:DALException" name="DALException">
     </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="deleteItems">
+      <wsdl:input message="tns:deleteItems" name="deleteItems">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteItemsResponse" name="deleteItemsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DALException" name="DALException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getItemsPerSite">
+      <wsdl:input message="tns:getItemsPerSite" name="getItemsPerSite">
+    </wsdl:input>
+      <wsdl:output message="tns:getItemsPerSiteResponse" name="getItemsPerSiteResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DALException" name="DALException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getInventoryById">
+      <wsdl:input message="tns:getInventoryById" name="getInventoryById">
+    </wsdl:input>
+      <wsdl:output message="tns:getInventoryByIdResponse" name="getInventoryByIdResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DALException" name="DALException">
+    </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="getInventoryPerSite">
       <wsdl:input message="tns:getInventoryPerSite" name="getInventoryPerSite">
     </wsdl:input>
@@ -329,34 +258,10 @@
       <wsdl:fault message="tns:DALException" name="DALException">
     </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="itemByName">
-      <wsdl:input message="tns:itemByName" name="itemByName">
+    <wsdl:operation name="getSuppliersOfItem">
+      <wsdl:input message="tns:getSuppliersOfItem" name="getSuppliersOfItem">
     </wsdl:input>
-      <wsdl:output message="tns:itemByNameResponse" name="itemByNameResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:DALException" name="DALException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="deleteItem">
-      <wsdl:input message="tns:deleteItem" name="deleteItem">
-    </wsdl:input>
-      <wsdl:output message="tns:deleteItemResponse" name="deleteItemResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:DALException" name="DALException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="supplierByName">
-      <wsdl:input message="tns:supplierByName" name="supplierByName">
-    </wsdl:input>
-      <wsdl:output message="tns:supplierByNameResponse" name="supplierByNameResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:DALException" name="DALException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="updateInventoryEntry">
-      <wsdl:input message="tns:updateInventoryEntry" name="updateInventoryEntry">
-    </wsdl:input>
-      <wsdl:output message="tns:updateInventoryEntryResponse" name="updateInventoryEntryResponse">
+      <wsdl:output message="tns:getSuppliersOfItemResponse" name="getSuppliersOfItemResponse">
     </wsdl:output>
       <wsdl:fault message="tns:DALException" name="DALException">
     </wsdl:fault>
@@ -369,10 +274,18 @@
       <wsdl:fault message="tns:DALException" name="DALException">
     </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="addItemToSite">
-      <wsdl:input message="tns:addItemToSite" name="addItemToSite">
+    <wsdl:operation name="updateItem">
+      <wsdl:input message="tns:updateItem" name="updateItem">
     </wsdl:input>
-      <wsdl:output message="tns:addItemToSiteResponse" name="addItemToSiteResponse">
+      <wsdl:output message="tns:updateItemResponse" name="updateItemResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DALException" name="DALException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteSupplier">
+      <wsdl:input message="tns:deleteSupplier" name="deleteSupplier">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteSupplierResponse" name="deleteSupplierResponse">
     </wsdl:output>
       <wsdl:fault message="tns:DALException" name="DALException">
     </wsdl:fault>
@@ -385,12 +298,6 @@
       <wsdl:fault message="tns:DALException" name="DALException">
     </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="sayHello">
-      <wsdl:input message="tns:sayHello" name="sayHello">
-    </wsdl:input>
-      <wsdl:output message="tns:sayHelloResponse" name="sayHelloResponse">
-    </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="newItem">
       <wsdl:input message="tns:newItem" name="newItem">
     </wsdl:input>
@@ -399,18 +306,40 @@
       <wsdl:fault message="tns:DALException" name="DALException">
     </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="updateItem">
-      <wsdl:input message="tns:updateItem" name="updateItem">
+    <wsdl:operation name="sayHello">
+      <wsdl:input message="tns:sayHello" name="sayHello">
     </wsdl:input>
-      <wsdl:output message="tns:updateItemResponse" name="updateItemResponse">
+      <wsdl:output message="tns:sayHelloResponse" name="sayHelloResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="itemById">
+      <wsdl:input message="tns:itemById" name="itemById">
+    </wsdl:input>
+      <wsdl:output message="tns:itemByIdResponse" name="itemByIdResponse">
     </wsdl:output>
       <wsdl:fault message="tns:DALException" name="DALException">
     </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="newSupplier">
-      <wsdl:input message="tns:newSupplier" name="newSupplier">
+    <wsdl:operation name="addItemToSite">
+      <wsdl:input message="tns:addItemToSite" name="addItemToSite">
     </wsdl:input>
-      <wsdl:output message="tns:newSupplierResponse" name="newSupplierResponse">
+      <wsdl:output message="tns:addItemToSiteResponse" name="addItemToSiteResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DALException" name="DALException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getInventoryPerSupplier">
+      <wsdl:input message="tns:getInventoryPerSupplier" name="getInventoryPerSupplier">
+    </wsdl:input>
+      <wsdl:output message="tns:getInventoryPerSupplierResponse" name="getInventoryPerSupplierResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DALException" name="DALException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getInventoryCrossSite">
+      <wsdl:input message="tns:getInventoryCrossSite" name="getInventoryCrossSite">
+    </wsdl:input>
+      <wsdl:output message="tns:getInventoryCrossSiteResponse" name="getInventoryCrossSiteResponse">
     </wsdl:output>
       <wsdl:fault message="tns:DALException" name="DALException">
     </wsdl:fault>
@@ -423,10 +352,42 @@
       <wsdl:fault message="tns:DALException" name="DALException">
     </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="itemByName">
+      <wsdl:input message="tns:itemByName" name="itemByName">
+    </wsdl:input>
+      <wsdl:output message="tns:itemByNameResponse" name="itemByNameResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DALException" name="DALException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getItems">
+      <wsdl:input message="tns:getItems" name="getItems">
+    </wsdl:input>
+      <wsdl:output message="tns:getItemsResponse" name="getItemsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DALException" name="DALException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="supplierByName">
+      <wsdl:input message="tns:supplierByName" name="supplierByName">
+    </wsdl:input>
+      <wsdl:output message="tns:supplierByNameResponse" name="supplierByNameResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DALException" name="DALException">
+    </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="updateSupplier">
       <wsdl:input message="tns:updateSupplier" name="updateSupplier">
     </wsdl:input>
       <wsdl:output message="tns:updateSupplierResponse" name="updateSupplierResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DALException" name="DALException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="newSupplier">
+      <wsdl:input message="tns:newSupplier" name="newSupplier">
+    </wsdl:input>
+      <wsdl:output message="tns:newSupplierResponse" name="newSupplierResponse">
     </wsdl:output>
       <wsdl:fault message="tns:DALException" name="DALException">
     </wsdl:fault>
@@ -439,131 +400,15 @@
       <wsdl:fault message="tns:DALException" name="DALException">
     </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="itemById">
-      <wsdl:input message="tns:itemById" name="itemById">
-    </wsdl:input>
-      <wsdl:output message="tns:itemByIdResponse" name="itemByIdResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:DALException" name="DALException">
-    </wsdl:fault>
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="DALServiceServiceSoapBinding" type="tns:DALService">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="deleteInventoryEntry">
+    <wsdl:operation name="updateInventoryEntry">
       <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="deleteInventoryEntry">
+      <wsdl:input name="updateInventoryEntry">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="deleteInventoryEntryResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="DALException">
-        <soap:fault name="DALException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getItemsPerSite">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="getItemsPerSite">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getItemsPerSiteResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="DALException">
-        <soap:fault name="DALException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="provisionItem">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="provisionItem">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="provisionItemResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="DALException">
-        <soap:fault name="DALException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getInventoryById">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="getInventoryById">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getInventoryByIdResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="DALException">
-        <soap:fault name="DALException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getInventoryCrossSite">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="getInventoryCrossSite">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getInventoryCrossSiteResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="DALException">
-        <soap:fault name="DALException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="deleteSupplier">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="deleteSupplier">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="deleteSupplierResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="DALException">
-        <soap:fault name="DALException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="searchByName">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="searchByName">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="searchByNameResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="DALException">
-        <soap:fault name="DALException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="items">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="items">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="itemsResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="DALException">
-        <soap:fault name="DALException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getInventoryPerSupplier">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="getInventoryPerSupplier">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getInventoryPerSupplierResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="DALException">
-        <soap:fault name="DALException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getSuppliersOfItem">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="getSuppliersOfItem">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getSuppliersOfItemResponse">
+      <wsdl:output name="updateInventoryEntryResponse">
         <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="DALException">
@@ -582,60 +427,48 @@
         <soap:fault name="DALException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="deleteItems">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteItems">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteItemsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DALException">
+        <soap:fault name="DALException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getItemsPerSite">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getItemsPerSite">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getItemsPerSiteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DALException">
+        <soap:fault name="DALException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getInventoryById">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getInventoryById">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getInventoryByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DALException">
+        <soap:fault name="DALException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="getInventoryPerSite">
       <soap:operation soapAction="" style="document"/>
       <wsdl:input name="getInventoryPerSite">
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="getInventoryPerSiteResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="DALException">
-        <soap:fault name="DALException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="itemByName">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="itemByName">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="itemByNameResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="DALException">
-        <soap:fault name="DALException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="deleteItem">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="deleteItem">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="deleteItemResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="DALException">
-        <soap:fault name="DALException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="supplierByName">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="supplierByName">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="supplierByNameResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="DALException">
-        <soap:fault name="DALException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="updateInventoryEntry">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="updateInventoryEntry">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="updateInventoryEntryResponse">
         <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="DALException">
@@ -654,45 +487,12 @@
         <soap:fault name="DALException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="addItemToSite">
+    <wsdl:operation name="getSuppliersOfItem">
       <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="addItemToSite">
+      <wsdl:input name="getSuppliersOfItem">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="addItemToSiteResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="DALException">
-        <soap:fault name="DALException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="getItemStock">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="getItemStock">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getItemStockResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="DALException">
-        <soap:fault name="DALException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="sayHello">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="sayHello">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="sayHelloResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="newItem">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="newItem">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="newItemResponse">
+      <wsdl:output name="getSuppliersOfItemResponse">
         <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="DALException">
@@ -711,12 +511,93 @@
         <soap:fault name="DALException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="newSupplier">
+    <wsdl:operation name="deleteSupplier">
       <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="newSupplier">
+      <wsdl:input name="deleteSupplier">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="newSupplierResponse">
+      <wsdl:output name="deleteSupplierResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DALException">
+        <soap:fault name="DALException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getItemStock">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getItemStock">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getItemStockResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DALException">
+        <soap:fault name="DALException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="newItem">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="newItem">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="newItemResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DALException">
+        <soap:fault name="DALException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="sayHello">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sayHello">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sayHelloResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="itemById">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="itemById">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="itemByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DALException">
+        <soap:fault name="DALException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addItemToSite">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addItemToSite">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addItemToSiteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DALException">
+        <soap:fault name="DALException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getInventoryPerSupplier">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getInventoryPerSupplier">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getInventoryPerSupplierResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DALException">
+        <soap:fault name="DALException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getInventoryCrossSite">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getInventoryCrossSite">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getInventoryCrossSiteResponse">
         <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="DALException">
@@ -735,12 +616,60 @@
         <soap:fault name="DALException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="itemByName">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="itemByName">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="itemByNameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DALException">
+        <soap:fault name="DALException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getItems">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getItems">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getItemsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DALException">
+        <soap:fault name="DALException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="supplierByName">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="supplierByName">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="supplierByNameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DALException">
+        <soap:fault name="DALException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="updateSupplier">
       <soap:operation soapAction="" style="document"/>
       <wsdl:input name="updateSupplier">
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="updateSupplierResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DALException">
+        <soap:fault name="DALException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="newSupplier">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="newSupplier">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="newSupplierResponse">
         <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="DALException">
@@ -759,22 +688,10 @@
         <soap:fault name="DALException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="itemById">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="itemById">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="itemByIdResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="DALException">
-        <soap:fault name="DALException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="DALServiceService">
     <wsdl:port binding="tns:DALServiceServiceSoapBinding" name="DALServicePort">
-      <soap:address location="http://dal.brown.case/inventory/ws"/>
+      <soap:address location="http://172.16.249.79:9080/inventory/ws"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
