@@ -10,8 +10,8 @@ The goal of this project is to demonstrate how an IBM Integration Bus runtime ca
 * [Mediation flow implementation tutorial](./docs/tutorial/README.md)
 * [Deployment](#deployment)
 * [CI/CD](#cicd)
-* [Service Management](https://github.com/ibm-cloud-architecture/refarch-integration-esb#application-performance-management)
-* [Compendium](https://github.com/ibm-cloud-architecture/refarch-integration#compendium)
+* [Service Management](#application-performance-management)
+* [Integration Compendium](#compendium)
 
 # IBM Integration Bus Background
 
@@ -55,9 +55,6 @@ To start the IIB toolkit you can use the `<install_dir>/iib toolkit` command. (e
 ## Docker
 IIB can run in docker and we detailed the approach in this note: [Building a docker image that include IBM Integration Bus and IBM MQ embedded using the Developer Editions](docker/README.md)
 
-## IBM Cloud Private
-The deployment of IIB on ICP may follow two paths that we are presenting in a [separate note](docs/icp/README.md)
-
 # Deployment
 There are three options for IIB application deployment:
 1. Deploy manually using Docker
@@ -67,7 +64,7 @@ There are three options for IIB application deployment:
 To implement the [lightweight integration](https://developer.ibm.com/integration/blog/2017/03/31/lightweight-integration-iib/)  strategy and development practices we are moving the mediation flow within container embedding IIB runtime.
 
 ## Deploy manually using Docker
-See the article [Deploying the application using Docker locally](deploy/README.md)
+See the article [Deploying the application using Docker locally](docs/deploy/README.md)
 
 ## Deploy to IBM Cloud Private
 See the article [Deploying a new instance of IBM Integration Bus on IBM Cloud Private deploying the newly created application](docs/icp/README.md)
